@@ -2,7 +2,6 @@
 
 ## Diagrama Entidad-Relación
 
-![Diagrama E-R Clínica Universitaria](https://i.ibb.co/L4gcP8Z/E-R-Clinica-universitaria.png)
 
 ---
 
@@ -10,22 +9,6 @@
 
 La base de datos `clinica_universitaria` gestiona la información de pacientes, médicos, citas médicas, recetas y medicamentos dentro de un entorno clínico universitario. También incluye una tabla de log para registrar errores producidos durante la ejecución de procedimientos almacenados.
 
----
-
-## 🗂️ Tablas Principales
-
-| Tabla        | Descripción                                              |
-|--------------|----------------------------------------------------------|
-| `facultad`   | Facultades universitarias a las que pertenecen los médicos |
-| `paciente`   | Información personal de los pacientes                    |
-| `medico`     | Médicos con su especialidad y facultad asociada          |
-| `hospital`   | Sedes o centros médicos disponibles                      |
-| `cita`       | Citas médicas que relacionan paciente, médico y hospital |
-| `medicamento`| Catálogo de medicamentos disponibles                     |
-| `receta`     | Medicamentos recetados en una cita, con su dosis         |
-| `log_errores`| Registro automático de errores generados en los SP       |
-
----
 
 ## ⚙️ Procedimientos Almacenados (Stored Procedures)
 
@@ -175,17 +158,6 @@ Todos los errores capturados por los procedimientos se almacenan automáticament
 SELECT * FROM log_errores ORDER BY fecha_hora DESC;
 ```
 
-| Campo          | Descripción                              |
-|----------------|------------------------------------------|
-| `id_error`     | ID autoincremental del error             |
-| `objeto`       | Nombre del procedimiento o función       |
-| `nombre_tabla` | Tabla involucrada                        |
-| `codigo_error` | Código interno (1=insert, 2=update, 3=delete) |
-| `mensaje`      | Descripción del error                    |
-| `fecha_hora`   | Timestamp del momento del error          |
-
----
-
 ## 🚀 Uso base de datos
 
 1. El script en el cual se encuentra todo es Clinica universitaria.sql
@@ -204,7 +176,3 @@ El particionamiento se realizó utilizando la columna fecha, mediante una estrat
 Esta tabla se creo debido a que no se podia particionar la tabla citas ya que debido a limitaciones técnicas del motor de base de datos MySQL y a la naturaleza transaccional de la información que contiene no fue posible realizarla.
 
 El problema esta en que una tabla con FOREIGN KEY no se pueden particionar.
-
-## 👨‍💻 Autor
-
-Desarrollado por **Kevin Santiago Sierra**
